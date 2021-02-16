@@ -1,0 +1,28 @@
+class Solution {
+public:
+vector<string>ans;
+    
+    void ok(string& S ,string curr , int index){
+        if((int)curr.size()==((int)S.size())){
+            ans.push_back(curr);
+            return;
+        }
+        if(isdigit(S[index]))
+            ok(S, curr+S[index], index+1);
+        else{
+            string in1=curr,in2=curr;
+            in1.push_back(toupper(S[index]));
+            in2.push_back(tolower(S[index]));
+            ok(S,in1,index+1);
+            ok(S,in2,index+1);
+        }
+        return;
+    }
+    
+    vector<string> letterCasePermutation(string S) {
+        int n=S.size();
+        string curr="";
+        ok(S,curr,0);
+        return ans;
+    }
+};
